@@ -4,8 +4,11 @@ import java.awt.Color;
 
 import java.awt.Toolkit;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.ListSelectionModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -189,10 +192,24 @@ class linked_list
             return null;
         
     }
-}
+    public String get()
+    {
+        Node t=head;
+        while(t!=null)
+        {
+          String m1=t.word;
+          return m1;
+        }
+       return null; 
+    }
+  }
       
             
 public class search_word extends javax.swing.JFrame {
+    
+  //vvvvvvvvvvvvvv  DefaultListModel defaultListModel=new DefaultListModel();
+   
+    
     String wo[]=new String[30];
     String mea[]=new String[150];
     int row;
@@ -203,7 +220,7 @@ public class search_word extends javax.swing.JFrame {
     /**
      * Creates new form search_word
      */
-    public search_word() {
+    public search_word() throws SQLException {
         this.setUndecorated(true);
         
         Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -213,9 +230,46 @@ public class search_word extends javax.swing.JFrame {
         
         this.setSize((int)width, (int)height);
         initComponents();
+     // vvvvvvvvvvvvvvvvvvvvv   this.bindData();
     }
      
-
+   /* vvvvvvvvvvvv  private ArrayList getWords() throws SQLException 
+    {
+        ArrayList word1s=new ArrayList();
+         data d1=new data();
+        int row1=d1.row();
+        linked_list l1=new linked_list();
+       for(int z=1;z<=row1;z++)
+       {
+           
+          word1s.add(l1.get()); 
+       }
+        return word1s; 
+    }
+    private void bindData() throws SQLException
+    {
+        getWords().stream().forEach((word1) -> {
+            defaultListModel.addElement(word1);
+            });
+        word_list.setModel(defaultListModel);
+        word_list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    }
+    
+    private void searchFilter(String searchTerm ) throws SQLException
+    {
+        DefaultListModel filteredItems=new  DefaultListModel();
+        ArrayList word3s=getWords();
+        
+          word3s.stream().forEach((word3) -> {
+           String wordName=word3.toString().toLowerCase();
+           if(wordName.contains(searchTerm.toLowerCase()))
+                {
+                    filteredItems.addElement(word3);
+                }
+        }); 
+        defaultListModel=filteredItems;
+        word_list.setModel(defaultListModel);
+    }   */
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -226,6 +280,7 @@ public class search_word extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        word_list = new javax.swing.JList<>();
         logo = new javax.swing.JLabel();
         meaning1 = new javax.swing.JTextField();
         word = new javax.swing.JTextField();
@@ -237,6 +292,14 @@ public class search_word extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(null);
+
+        word_list.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                word_listMouseClicked(evt);
+            }
+        });
+        jPanel1.add(word_list);
+        word_list.setBounds(460, 350, 310, 200);
 
         logo.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\dict_logo1.jpg")); // NOI18N
         jPanel1.add(logo);
@@ -250,7 +313,7 @@ public class search_word extends javax.swing.JFrame {
             }
         });
         jPanel1.add(meaning1);
-        meaning1.setBounds(490, 490, 510, 120);
+        meaning1.setBounds(440, 560, 580, 60);
 
         word.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         word.setForeground(new java.awt.Color(204, 204, 204));
@@ -279,7 +342,7 @@ public class search_word extends javax.swing.JFrame {
             }
         });
         jPanel1.add(word);
-        word.setBounds(490, 380, 310, 60);
+        word.setBounds(460, 280, 310, 60);
 
         b_search.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         b_search.setText("SEARCH");
@@ -294,7 +357,7 @@ public class search_word extends javax.swing.JFrame {
             }
         });
         jPanel1.add(b_search);
-        b_search.setBounds(880, 390, 120, 40);
+        b_search.setBounds(890, 290, 120, 40);
 
         phone_bg.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Documents\\NetBeansProjects\\OOPM\\AtmSimulator\\src\\w1.jpg")); // NOI18N
         jPanel1.add(phone_bg);
@@ -356,6 +419,11 @@ public class search_word extends javax.swing.JFrame {
             word.setCaretPosition(0);
             word.setForeground(new java.awt.Color(204, 204, 204));
         }
+      /*v vvvvvvvvvvvv try {
+            searchFilter(word.getText());
+        } catch (SQLException ex) {
+            Logger.getLogger(search_word.class.getName()).log(Level.SEVERE, null, ex);
+        } */
     }//GEN-LAST:event_wordKeyReleased
 
     private void b_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_searchActionPerformed
@@ -415,6 +483,43 @@ public class search_word extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_meaning1ActionPerformed
 
+    private void word_listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_word_listMouseClicked
+        // TODO add your handling code here:
+   /* vvvvvvvvvvvvvvvvvv        data d1=new data();
+        try {
+            wo=d1.db_word();
+            wo[0]=null;
+            mea=d1.db_meaning();
+            mea[0]=null;
+         //   System.out.println(mea[0]); 
+           row=d1.row();
+             linked_list l1=new linked_list();
+       for(int k=1;k<=row;k++)
+       {
+           l1.insert(wo[k],mea[k]);
+           
+       } 
+       
+       l1.show();
+       
+       String in=word.getText();
+      // System.out.println(in);
+            
+       
+      // linked_list l=new linked_list();
+       String m2 =l1.value(in);
+       System.out.println(m2);
+       if(m2!=null)
+       {
+           meaning1.setText(m2);
+       }
+       } catch (SQLException ex) {
+            Logger.getLogger(options.class.getName()).log(Level.SEVERE, null, ex);
+        }  */
+
+        
+    }//GEN-LAST:event_word_listMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -445,7 +550,11 @@ public class search_word extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new search_word().setVisible(true);
+                try {
+                    new search_word().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(search_word.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -459,5 +568,6 @@ public class search_word extends javax.swing.JFrame {
     private javax.swing.JTextField meaning1;
     private javax.swing.JLabel phone_bg;
     private javax.swing.JTextField word;
+    private javax.swing.JList<String> word_list;
     // End of variables declaration//GEN-END:variables
 }

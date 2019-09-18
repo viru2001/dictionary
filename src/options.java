@@ -105,9 +105,15 @@ public class options extends javax.swing.JFrame {
 
     private void SEARCH_WORDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SEARCH_WORDActionPerformed
         // TODO add your handling code here:
-         search_word s1=new search_word();
-             s1.setVisible(true);
+         search_word s1;
+        try {
+            s1 = new search_word();
+            s1.setVisible(true);
              dispose(); 
+        } catch (SQLException ex) {
+            Logger.getLogger(options.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
        
         
     }//GEN-LAST:event_SEARCH_WORDActionPerformed
