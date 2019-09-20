@@ -1,7 +1,7 @@
-Tue Sep 17 22:33:30 IST 2019 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
+Wed Sep 18 19:25:48 IST 2019 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Tue Sep 17 22:33:31 IST 2019:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-016d-402d-d96a-00003cc804df 
+Wed Sep 18 19:25:50 IST 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-016d-44a8-5bd4-00003cc804df 
 on database directory C:\Users\My\Documents\NetBeansProjects\dictionary\src\dict with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@c387f44 
 Loaded from file:/C:/Program%20Files/Java/glassfish5/javadb/lib/derby.jar
 java.vendor=Oracle Corporation
@@ -12,5 +12,3 @@ os.arch=amd64
 os.version=10.0
 derby.system.home=C:\Users\My\Documents\NetBeansProjects\dictionary\src
 Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Tue Sep 17 23:15:06 IST 2019: Shutting down Derby engine

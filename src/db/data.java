@@ -19,43 +19,42 @@ public class data {
      int i=1;
      int mea=1;
      int m=0;
-    public String w[]=new String[30];
-    public String me[]=new String[30];
-     public String[] db_word() throws SQLException
+    public String w[]=new String[m];
+    public String me[]=new String[m];
+    public String[] db_word() throws SQLException
             {
-               Connection con=DriverManager.getConnection("jdbc:derby://localhost:1527/dict", "root", "root");
-         //    System.out.println("Connection Created !!!");
+               Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/dict?zeroDateTimeBehavior=convertToNull", "root", "viresh");
+            //  System.out.println("Connection Created !!!");
                Statement st=con.createStatement();
-               ResultSet rs=st.executeQuery("select * from DICT");
+               ResultSet rs=st.executeQuery("select * from DICTIONARY");
               
               while(rs.next())
               {
-                  w[i]=rs.getString(1);
+                  w[i]=rs.getString(2);  
                   i++;
               }
               return w;
             }
      public String[] db_meaning() throws SQLException
             {
-               Connection con=DriverManager.getConnection("jdbc:derby://localhost:1527/dict", "root", "root");
+               Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/dict?zeroDateTimeBehavior=convertToNull", "root", "viresh");
          //    System.out.println("Connection Created !!!");
                Statement st=con.createStatement();
-               ResultSet rs=st.executeQuery("select * from DICT");
+               ResultSet rs=st.executeQuery("select * from DICTIONARY");
               
               while(rs.next())
               {
-                  me[mea]=rs.getString(2);
+                  me[mea]=rs.getString(3);
                   mea++;
               }
               return me;
             }
-
      
      public  int row() throws SQLException {
-        Connection con=DriverManager.getConnection("jdbc:derby://localhost:1527/dict", "root", "root");
+        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/dict?zeroDateTimeBehavior=convertToNull", "root", "viresh");
             //  System.out.println("Connection Created !!!");
                Statement st=con.createStatement();
-               ResultSet rs=st.executeQuery("select * from DICT");
+               ResultSet rs=st.executeQuery("select * from DICTIONARY");
               
               while(rs.next())
               {

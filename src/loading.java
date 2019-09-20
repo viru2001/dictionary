@@ -1,7 +1,10 @@
 
 import java.awt.Toolkit;
+import java.sql.SQLException;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -36,9 +39,15 @@ public class loading extends javax.swing.JFrame {
              @Override
              public void run()
                  {
-                      options o1 =new options();
-                         o1.setVisible(true);
+                      options o1;
+                 try {
+                     o1 = new options();
+                      o1.setVisible(true);
                         dispose();
+                 } catch (SQLException ex) {
+                     Logger.getLogger(loading.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+                        
                  }
          } , 2000);
     }

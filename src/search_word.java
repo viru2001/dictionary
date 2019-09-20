@@ -131,7 +131,7 @@ class Linked_List
     }
         
 }  */
-class Node
+/* class Node
 {
     String word;
     String meaning;
@@ -203,19 +203,19 @@ class linked_list
        return null; 
     }
   }
-      
+      */
             
 public class search_word extends javax.swing.JFrame {
     
   //vvvvvvvvvvvvvv  DefaultListModel defaultListModel=new DefaultListModel();
    
     
-    String wo[]=new String[30];
+   /* String wo[]=new String[30];
     String mea[]=new String[150];
     int row;
     int i;
     int mean;
-    int a;
+    int a; */
 
     /**
      * Creates new form search_word
@@ -280,7 +280,6 @@ public class search_word extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        word_list = new javax.swing.JList<>();
         logo = new javax.swing.JLabel();
         meaning1 = new javax.swing.JTextField();
         word = new javax.swing.JTextField();
@@ -292,14 +291,6 @@ public class search_word extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(null);
-
-        word_list.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                word_listMouseClicked(evt);
-            }
-        });
-        jPanel1.add(word_list);
-        word_list.setBounds(460, 350, 310, 200);
 
         logo.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\dict_logo1.jpg")); // NOI18N
         jPanel1.add(logo);
@@ -428,7 +419,7 @@ public class search_word extends javax.swing.JFrame {
 
     private void b_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_searchActionPerformed
         // TODO add your handling code here:
-         data d1=new data();
+      /*   data d1=new data();
         try {
             wo=d1.db_word();
             wo[0]=null;
@@ -440,7 +431,7 @@ public class search_word extends javax.swing.JFrame {
             {
             System.out.println(wo[i]+" : "+ mea[i]);
             
-            } */
+            } 
        linked_list l1=new linked_list();
        for(int k=1;k<=row;k++)
        {
@@ -460,9 +451,9 @@ public class search_word extends javax.swing.JFrame {
                meaning.setText(m1); //string m1 = meaning from linked list
            }
       }
-       */
        
-      // linked_list l=new linked_list();
+       
+       linked_list l=new linked_list();
        String m2 =l1.value(in);
        System.out.println(m2);
        if(m2!=null)
@@ -471,7 +462,7 @@ public class search_word extends javax.swing.JFrame {
        }
        } catch (SQLException ex) {
             Logger.getLogger(options.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }  */
              
     }//GEN-LAST:event_b_searchActionPerformed
 
@@ -482,43 +473,6 @@ public class search_word extends javax.swing.JFrame {
     private void meaning1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meaning1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_meaning1ActionPerformed
-
-    private void word_listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_word_listMouseClicked
-        // TODO add your handling code here:
-   /* vvvvvvvvvvvvvvvvvv        data d1=new data();
-        try {
-            wo=d1.db_word();
-            wo[0]=null;
-            mea=d1.db_meaning();
-            mea[0]=null;
-         //   System.out.println(mea[0]); 
-           row=d1.row();
-             linked_list l1=new linked_list();
-       for(int k=1;k<=row;k++)
-       {
-           l1.insert(wo[k],mea[k]);
-           
-       } 
-       
-       l1.show();
-       
-       String in=word.getText();
-      // System.out.println(in);
-            
-       
-      // linked_list l=new linked_list();
-       String m2 =l1.value(in);
-       System.out.println(m2);
-       if(m2!=null)
-       {
-           meaning1.setText(m2);
-       }
-       } catch (SQLException ex) {
-            Logger.getLogger(options.class.getName()).log(Level.SEVERE, null, ex);
-        }  */
-
-        
-    }//GEN-LAST:event_word_listMouseClicked
 
     /**
      * @param args the command line arguments
@@ -568,6 +522,5 @@ public class search_word extends javax.swing.JFrame {
     private javax.swing.JTextField meaning1;
     private javax.swing.JLabel phone_bg;
     private javax.swing.JTextField word;
-    private javax.swing.JList<String> word_list;
     // End of variables declaration//GEN-END:variables
 }
