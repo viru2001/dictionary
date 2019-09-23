@@ -9,8 +9,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.RowFilter;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableRowSorter;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -151,8 +156,91 @@ public class options extends javax.swing.JFrame {
         }
       }
     }
-    
-   /* public void show()
+    public void insertSp(String word ,String meaning) throws SQLException
+    {
+        DefaultTableModel model = (DefaultTableModel) traversal.getModel();
+        model.setRowCount(0);
+        model.setColumnCount(0);
+        
+        Node t=head;
+        Node n=new Node();
+        n.word=word;
+        n.meaning=meaning;
+        n.next=null;
+       int count=1;
+     //  System.out.println(n.word);
+     int crow=0;
+      t=head;
+     while(t!=null)
+     {
+         crow++;
+         t=t.next;
+            
+     }
+     System.out.println(crow);
+     t=head;
+       while(t!=null)
+       {
+           
+            int k=((t.word).compareTo(n.word));
+          //  System.out.println("k : "+k);
+          //  System.out.print(" ");
+            if(k>0)
+            {
+                break;
+            }
+                       /* if(k<0)
+            {
+                count=1;
+                break;
+            }  */
+            count++;
+            t=t.next;
+        }
+       System.out.println("count : " +count);
+     // t=head;
+     
+       int b=crow;
+         if(count==1)
+           {
+               t=head;
+               head=n;
+               n.next=t;
+               b++;
+           }
+         else if(count<b)
+         {
+             t=head;
+            for(int h=1;h<count;h++)
+            {
+                  t=t.next;
+            }
+            n.next=t.next;
+            t.next=n;
+            b++;
+         }
+        else
+         {
+             t=head;
+             for(int h=1;h<count-1;h++)
+            {
+                  t=t.next;
+            }
+             t.next=n;
+             b++;
+             
+         } 
+         
+         // insert();
+        //  insertSp(String word ,String meaning);
+        CreateColumns();
+        
+        Populate();
+      //   show();
+          
+    }   
+        
+    /* public void show()
     {
         Node node = head;
         while(node.next!=null)
@@ -165,8 +253,8 @@ public class options extends javax.swing.JFrame {
         System.out.println(node.meaning); 
 
         
-    } 
-    public String value(String in)
+    }   */
+    public void wmean(String in)
     {
         Node t= head;
        
@@ -175,15 +263,19 @@ public class options extends javax.swing.JFrame {
                 if((t.word).compareTo(in)==0)
                 {
                     String m1 = t.meaning;
+                    meaning1.setText(m1);
                   //  System.out.println(m1);
-                    return m1;
+                    return ;
                 }
                   
                  t=t.next;
             }
-            return null;
+            if(t==null)
+            {
+                meaning1.setText("Word Not Found");
+            }
         
-    } */
+    } 
 
 /*
      int j=1;
@@ -250,9 +342,12 @@ public class options extends javax.swing.JFrame {
         
         this.setSize((int)width, (int)height);
         initComponents();
+
         insert();
         CreateColumns();
         Populate();
+        
+        
                 
     }
     public void CreateColumns()
@@ -317,9 +412,8 @@ public class options extends javax.swing.JFrame {
          rowData[1]=m;
          
              dm.addRow(rowData);
-
-            System.out.println(node.word);
-            System.out.println(node.meaning); 
+          System.out.println(node.word);
+        //    System.out.println(node.meaning); 
             node = node.next;
         }  
      /*   String[] rowData = {node.word,node.meaning};
@@ -347,12 +441,20 @@ public class options extends javax.swing.JFrame {
         word = new javax.swing.JTextField();
         bg_search = new javax.swing.JLabel();
         insert = new javax.swing.JPanel();
-        delete = new javax.swing.JPanel();
+        insertIn = new javax.swing.JButton();
+        wordIn = new javax.swing.JTextField();
+        meanIn = new javax.swing.JTextField();
+        bg_insert = new javax.swing.JLabel();
         see_all_words = new javax.swing.JPanel();
-        see = new javax.swing.JButton();
+        txt = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         traversal = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        delete = new javax.swing.JPanel();
+        result = new javax.swing.JTextField();
+        dword = new javax.swing.JTextField();
+        dbutton = new javax.swing.JButton();
+        tab_bg = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
         w1 = new javax.swing.JLabel();
         frame = new javax.swing.JLabel();
@@ -411,23 +513,53 @@ public class options extends javax.swing.JFrame {
         jTabbedPane2.addTab("SEARCH", search);
 
         insert.setLayout(null);
-        jTabbedPane2.addTab("INSERT", insert);
 
-        delete.setLayout(null);
-        jTabbedPane2.addTab("DELETE", delete);
-        delete.getAccessibleContext().setAccessibleName("");
+        insertIn.setText("INSERT");
+        insertIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertInActionPerformed(evt);
+            }
+        });
+        insert.add(insertIn);
+        insertIn.setBounds(190, 250, 69, 23);
+
+        wordIn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        insert.add(wordIn);
+        wordIn.setBounds(130, 70, 240, 40);
+
+        meanIn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        insert.add(meanIn);
+        meanIn.setBounds(90, 140, 420, 50);
+
+        bg_insert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dict/w1.jpg"))); // NOI18N
+        bg_insert.setText("jabel2");
+        insert.add(bg_insert);
+        bg_insert.setBounds(0, 0, 620, 490);
+
+        jTabbedPane2.addTab("INSERT", insert);
 
         see_all_words.setLayout(null);
 
-        see.setText("SEE");
-        see.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seeActionPerformed(evt);
+        txt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txt.setForeground(new java.awt.Color(204, 204, 204));
+        txt.setText("Enter Word Here");
+        txt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtFocusGained(evt);
             }
         });
-        see_all_words.add(see);
-        see.setBounds(220, 10, 51, 23);
+        txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtKeyReleased(evt);
+            }
+        });
+        see_all_words.add(txt);
+        txt.setBounds(70, 10, 320, 40);
 
+        traversal.setAutoCreateRowSorter(true);
         traversal.setBackground(new java.awt.Color(204, 204, 204));
         traversal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         traversal.setModel(new javax.swing.table.DefaultTableModel(
@@ -445,13 +577,53 @@ public class options extends javax.swing.JFrame {
         jScrollPane1.setViewportView(traversal);
 
         see_all_words.add(jScrollPane1);
-        jScrollPane1.setBounds(0, 50, 620, 440);
+        jScrollPane1.setBounds(0, 60, 620, 430);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dict/w1.jpg"))); // NOI18N
         see_all_words.add(jLabel1);
         jLabel1.setBounds(0, 0, 620, 500);
 
         jTabbedPane2.addTab("SEE ALL WORDS", see_all_words);
+
+        delete.setLayout(null);
+
+        result.setEditable(false);
+        result.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        delete.add(result);
+        result.setBounds(40, 180, 470, 60);
+
+        dword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        dword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dwordActionPerformed(evt);
+            }
+        });
+        dword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                dwordKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                dwordKeyReleased(evt);
+            }
+        });
+        delete.add(dword);
+        dword.setBounds(40, 60, 300, 60);
+
+        dbutton.setText("DELETE");
+        dbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dbuttonActionPerformed(evt);
+            }
+        });
+        delete.add(dbutton);
+        dbutton.setBounds(380, 70, 110, 30);
+
+        tab_bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dict/w1.jpg"))); // NOI18N
+        delete.add(tab_bg);
+        tab_bg.setBounds(0, 0, 620, 500);
+
+        jTabbedPane2.addTab("DELETE", delete);
+        delete.getAccessibleContext().setAccessibleName("");
 
         jPanel1.add(jTabbedPane2);
         jTabbedPane2.setBounds(420, 180, 620, 520);
@@ -493,6 +665,7 @@ public class options extends javax.swing.JFrame {
 
     private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
         // TODO add your handling code here:
+                wmean(word.getText());
       /*     data d1=new data();
         try {
             wo=d1.db_word();
@@ -561,19 +734,230 @@ public class options extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_wordKeyPressed
+    public void filter(String query)
+    {
+      if(txt.getText().length()!=15)
+       {
+        TableRowSorter<DefaultTableModel> tr = new  TableRowSorter<>(dm);
+        traversal.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(query)); 
+       }
+    }
+    public void filter_v(String query)
+    {
+        if(txt.getText().length()!=15)
+        {    
+        DefaultTableModel model = (DefaultTableModel) traversal.getModel();
+        model.setRowCount(0); 
+        
+        Node t= head;
+       
+            while(t!=null)
+            {
+               // int q=t.word.length();
+                           
+             
+               if((t.word).charAt(0)==txt.getText().charAt(0))
+            /*    int h=txt.getText().length();
+                System.out.println(h);
+                String s=(t.word).substring(0,h);
+              if(s.compareTo(txt.getText())==0) */
+                {
+                    
+                      Object[] rowData = new Object[2];
+                      rowData[0]=t.word;
+                      rowData[1]=t.meaning;
+                      dm.addRow(rowData);
+                    
+                }
+     
+                                 
+                 t=t.next;
+            }
+          }     
+    }
+          
+     /*   int y=txt.getText().length();
+        if(y==0)
+        {
+         //   DefaultTableModel model = (DefaultTableModel) traversal.getModel();
+            model.setRowCount(0);
+             model.setColumnCount(0); 
+             CreateColumns();
+             Populate();
+             
+        } */
+    
+     
+    
 
+    
     private void wordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_wordFocusGained
         // TODO add your handling code here:
          word.setCaretPosition(0);
     }//GEN-LAST:event_wordFocusGained
 
-    private void seeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seeActionPerformed
+    private void txtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKeyReleased
         // TODO add your handling code here:
+         if(txt.getText().isEmpty()==true)
+        {
+            
+           
+            txt.setText("Enter Word Here");
+            txt.setCaretPosition(0);
+            txt.setForeground(new java.awt.Color(204, 204, 204));
+         /*    try {
+                 
+                 insert();
+                Node node=head;
+                 System.out.println(head.word); 
+             } catch (SQLException ex) {
+                 Logger.getLogger(options.class.getName()).log(Level.SEVERE, null, ex);
+             }
+            CreateColumns();
+            Populate(); */
+        }
         
-    }//GEN-LAST:event_seeActionPerformed
+       String query =txt.getText().toLowerCase();
+        filter(query);
+        filter_v(query);
+       /*  try {
+                 
+                 insert();
+                Node node=head;
+                 System.out.println(head.word); 
+             } catch (SQLException ex) {
+                 Logger.getLogger(options.class.getName()).log(Level.SEVERE, null, ex);
+             } */
+          //  CreateColumns();
+          //  Populate();
+        int y=txt.getText().length();
+       System.out.println(y);
+        if(y==15)
+        {
+          DefaultTableModel model = (DefaultTableModel) traversal.getModel();
+            model.setRowCount(0);
+             model.setColumnCount(0); 
+             System.out.println("hello");
+             CreateColumns();
+             System.out.println("word");
+             Populate(); 
+        }  
+    }//GEN-LAST:event_txtKeyReleased
+
+    private void txtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKeyPressed
+        // TODO add your handling code here:
+         if(txt.getForeground()!=Color.BLACK)
+        {
+            if(txt.getText().equals("Enter Word Here"))
+            {
+                txt.setText("");
+            }
+            txt.setForeground(Color.BLACK);
+        }
+
+    }//GEN-LAST:event_txtKeyPressed
+
+    private void txtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFocusGained
+        // TODO add your handling code here:
+         txt.setCaretPosition(0);
+    }//GEN-LAST:event_txtFocusGained
+
+    private void insertInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertInActionPerformed
+          try {
+              // TODO add your handling code here:
+              //  String p=wordIn.getText();
+              // System.out.println(p);
+              // show();
+              insertSp(wordIn.getText(),meanIn.getText());
+          } catch (SQLException ex) {
+              Logger.getLogger(options.class.getName()).log(Level.SEVERE, null, ex);
+          }
+        
+    }//GEN-LAST:event_insertInActionPerformed
+
+    private void dwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dwordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dwordActionPerformed
+
+    private void dwordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dwordKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dwordKeyReleased
+
+    private void dwordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dwordKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dwordKeyPressed
+    public void delete()
+    {
+       Node p=head;
+        Node q=head;
+        String delword=dword.getText();
+      /* int index=1;
+        while(p!=null)
+        {
+            if((p.word).equals(delword)==true)
+            {
+              break;
+            }
+            index++;
+        }
+        //p=head;
+       System.out.println(index);
+      /*  if(index==1)
+        {
+            head=head.next;
+        }
+        else
+        {
+            Node n=head;
+            Node n1=null;
+           for(int h=1;h<index-1;h++)
+            {
+                  n=n.next;
+            }
+          n1=n.next;
+          n.next=n1.next;
+          System.out.println("n1 :" +n1.word);
+        } */
+        while(p!=null)
+        {
+            if((p.word).compareTo(delword)==0)
+            {
+                if(p==head)
+                {
+                    head=head.next;
+                    break;
+                }
+               q.next=p.next;
+              // System.out.println(p.word);
+               break;
+            }
+            q=p;
+            p=p.next; 
+                
+        }
+        if(p==null)
+        {
+            result.setText("Word Not Found");
+        }
+        else
+        {
+            result.setText("Word Deleted Succesfully");
+        }
+        DefaultTableModel model = (DefaultTableModel) traversal.getModel();
+            model.setRowCount(0);
+             model.setColumnCount(0); 
+        CreateColumns(); 
+        Populate(); 
+    }
+    private void dbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dbuttonActionPerformed
+        // TODO add your handling code here:
+        delete();
+    }//GEN-LAST:event_dbuttonActionPerformed
 
     /**
      * @param args the command line arguments
+     * @throws java.sql.SQLException
      */
     public static void main(String args[]) throws SQLException {
      /*  options o1=new options();
@@ -625,21 +1009,29 @@ public class options extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Search;
     private javax.swing.JLabel bg;
+    private javax.swing.JLabel bg_insert;
     private javax.swing.JLabel bg_search;
+    private javax.swing.JButton dbutton;
     private javax.swing.JPanel delete;
+    private javax.swing.JTextField dword;
     private javax.swing.JLabel frame;
     private javax.swing.JPanel insert;
+    private javax.swing.JButton insertIn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JLabel logo;
+    private javax.swing.JTextField meanIn;
     private javax.swing.JTextField meaning1;
+    private javax.swing.JTextField result;
     private javax.swing.JPanel search;
-    private javax.swing.JButton see;
     private javax.swing.JPanel see_all_words;
+    private javax.swing.JLabel tab_bg;
     private javax.swing.JTable traversal;
+    private javax.swing.JTextField txt;
     private javax.swing.JLabel w1;
     private javax.swing.JTextField word;
+    private javax.swing.JTextField wordIn;
     // End of variables declaration//GEN-END:variables
 }
