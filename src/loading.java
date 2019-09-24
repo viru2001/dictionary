@@ -49,7 +49,7 @@ public class loading extends javax.swing.JFrame {
                  }
                         
                  }
-         } , 2000);
+         } , 1500);
     }
 
     /**

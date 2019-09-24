@@ -734,7 +734,7 @@ public class options extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_wordKeyPressed
-    public void filter(String query)
+   /* public void filter(String query)
     {
       if(txt.getText().length()!=15)
        {
@@ -742,11 +742,15 @@ public class options extends javax.swing.JFrame {
         traversal.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(query)); 
        }
-    }
+    } */
+   
     public void filter_v(String query)
     {
+      //  String wo1;
+        // int cw=query.length();
         if(txt.getText().length()!=15)
-        {    
+        {  
+            int cw=query.length();
         DefaultTableModel model = (DefaultTableModel) traversal.getModel();
         model.setRowCount(0); 
         
@@ -755,13 +759,28 @@ public class options extends javax.swing.JFrame {
             while(t!=null)
             {
                // int q=t.word.length();
-                           
-             
-               if((t.word).charAt(0)==txt.getText().charAt(0))
+                  String wo1; 
+                  String wo2=t.word; 
+                  int len=wo2.length();
+                 System.out.println(t.word);
+                 
+            //    wo2.getShortString("viresh",2);
+            //   if((t.word).charAt(0)==txt.getText().charAt(0))
+              if(len>=cw)
+               {
+                   
+                
+                
+                wo1=wo2.substring(0,cw);
+                 System.out.println(cw);                  
+                 System.out.println(wo1);   
+                 System.out.println(query);   
             /*    int h=txt.getText().length();
                 System.out.println(h);
                 String s=(t.word).substring(0,h);
               if(s.compareTo(txt.getText())==0) */
+                if(query.equals(wo1))
+
                 {
                     
                       Object[] rowData = new Object[2];
@@ -770,9 +789,8 @@ public class options extends javax.swing.JFrame {
                       dm.addRow(rowData);
                     
                 }
-     
-                                 
-                 t=t.next;
+              }
+                t=t.next;
             }
           }     
     }
@@ -819,7 +837,7 @@ public class options extends javax.swing.JFrame {
         }
         
        String query =txt.getText().toLowerCase();
-        filter(query);
+      //  filter(query);
         filter_v(query);
        /*  try {
                  
