@@ -167,7 +167,7 @@ public class options extends javax.swing.JFrame {
         n.word=word;
         n.meaning=meaning;
         n.next=null;
-       int count=0;
+       int count=1;
      //  System.out.println(n.word);
      int crow=0;
       t=head;
@@ -201,7 +201,7 @@ public class options extends javax.swing.JFrame {
      // t=head;
      
        int b=crow;
-         if(count==0)
+         if(count==1)
            {
                t=head;
                head=n;
@@ -375,12 +375,9 @@ public class options extends javax.swing.JFrame {
     //ADD ROWS DATA
     public void Populate()
     {  
-        
       
-        System.out.println("25");
+
        dm=(DefaultTableModel)traversal.getModel(); 
-     
-        dm.setRowCount(0); 
 
        Node node=head;
       //  node=node.next;
@@ -415,7 +412,7 @@ public class options extends javax.swing.JFrame {
          rowData[1]=m;
          
              dm.addRow(rowData);
-       //   System.out.println(node.word);
+          System.out.println(node.word);
         //    System.out.println(node.meaning); 
             node = node.next;
         }  
@@ -524,15 +521,15 @@ public class options extends javax.swing.JFrame {
             }
         });
         insert.add(insertIn);
-        insertIn.setBounds(250, 250, 69, 23);
+        insertIn.setBounds(190, 250, 69, 23);
 
         wordIn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         insert.add(wordIn);
-        wordIn.setBounds(90, 60, 420, 50);
+        wordIn.setBounds(130, 70, 240, 40);
 
         meanIn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         insert.add(meanIn);
-        meanIn.setBounds(90, 140, 420, 90);
+        meanIn.setBounds(90, 140, 420, 50);
 
         bg_insert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dict/w1.jpg"))); // NOI18N
         bg_insert.setText("jabel2");
@@ -545,6 +542,7 @@ public class options extends javax.swing.JFrame {
 
         txt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txt.setForeground(new java.awt.Color(204, 204, 204));
+        txt.setText("Enter Word Here");
         txt.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtFocusGained(evt);
@@ -595,11 +593,6 @@ public class options extends javax.swing.JFrame {
         result.setBounds(40, 180, 470, 60);
 
         dword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        dword.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                dwordFocusGained(evt);
-            }
-        });
         dword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dwordActionPerformed(evt);
@@ -743,35 +736,32 @@ public class options extends javax.swing.JFrame {
     }//GEN-LAST:event_wordKeyPressed
     public void filter(String query)
     {
-        System.out.println("aaaa");
       if(txt.getText().length()!=15)
        {
-           
         TableRowSorter<DefaultTableModel> tr = new  TableRowSorter<>(dm);
         traversal.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(query)); 
-       } 
+       }
     }
     public void filter_v(String query)
     {
-      /*  System.out.println("bbbbb");
         if(txt.getText().length()!=15)
         {    
-       /* DefaultTableModel model = (DefaultTableModel) traversal.getModel();
-        model.setRowCount(0); */
+        DefaultTableModel model = (DefaultTableModel) traversal.getModel();
+        model.setRowCount(0); 
         
-      /*  Node t= head;
-        
+        Node t= head;
+       
             while(t!=null)
             {
                // int q=t.word.length();
                            
              
-               if((t.word).charAt(0)==txt.getText().charAt(0)) */
+               if((t.word).charAt(0)==txt.getText().charAt(0))
             /*    int h=txt.getText().length();
                 System.out.println(h);
                 String s=(t.word).substring(0,h);
-              if(s.compareTo(txt.getText())==0) 
+              if(s.compareTo(txt.getText())==0) */
                 {
                     
                       Object[] rowData = new Object[2];
@@ -783,12 +773,9 @@ public class options extends javax.swing.JFrame {
      
                                  
                  t=t.next;
-            } */
-        }    
-     
-                   
-    
-                   
+            }
+          }     
+    }
           
      /*   int y=txt.getText().length();
         if(y==0)
@@ -812,7 +799,7 @@ public class options extends javax.swing.JFrame {
 
     private void txtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKeyReleased
         // TODO add your handling code here:
-        /* if(txt.getText().isEmpty()==true)
+         if(txt.getText().isEmpty()==true)
         {
             
            
@@ -828,14 +815,12 @@ public class options extends javax.swing.JFrame {
                  Logger.getLogger(options.class.getName()).log(Level.SEVERE, null, ex);
              }
             CreateColumns();
-            Populate(); 
-        } */
-       if(txt.getText().isEmpty()==false)
-       {
+            Populate(); */
+        }
+        
        String query =txt.getText().toLowerCase();
         filter(query);
         filter_v(query);
-       }
        /*  try {
                  
                  insert();
@@ -848,12 +833,12 @@ public class options extends javax.swing.JFrame {
           //  Populate();
         int y=txt.getText().length();
        System.out.println(y);
-        if(y==0)
+        if(y==15)
         {
           DefaultTableModel model = (DefaultTableModel) traversal.getModel();
             model.setRowCount(0);
-            model.setColumnCount(0); 
-            System.out.println("hello");
+             model.setColumnCount(0); 
+             System.out.println("hello");
              CreateColumns();
              System.out.println("word");
              Populate(); 
@@ -862,20 +847,20 @@ public class options extends javax.swing.JFrame {
 
     private void txtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKeyPressed
         // TODO add your handling code here:
-       /*  if(txt.getForeground()!=Color.BLACK)
+         if(txt.getForeground()!=Color.BLACK)
         {
             if(txt.getText().equals("Enter Word Here"))
             {
                 txt.setText("");
             }
             txt.setForeground(Color.BLACK);
-        } */
-  
+        }
+
     }//GEN-LAST:event_txtKeyPressed
 
     private void txtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFocusGained
         // TODO add your handling code here:
-       //  txt.setCaretPosition(0);
+         txt.setCaretPosition(0);
     }//GEN-LAST:event_txtFocusGained
 
     private void insertInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertInActionPerformed
@@ -969,10 +954,6 @@ public class options extends javax.swing.JFrame {
         // TODO add your handling code here:
         delete();
     }//GEN-LAST:event_dbuttonActionPerformed
-
-    private void dwordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dwordFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dwordFocusGained
 
     /**
      * @param args the command line arguments
