@@ -20,6 +20,11 @@ import org.apache.derby.iapi.sql.PreparedStatement;
 import java.io.*;
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
+import java.util.Random;
+import java.util.TimerTask;
+//import javax.swing.Timer;
+import java.util.Timer;
+//import java.util.TimerTask;
 
 
 /*
@@ -39,83 +44,7 @@ class Node
     String meaning;
     Node next;
 }
-/* class linked_list
-{
-    public Node head;
-    public void insert(String w,String m)
-    {
-        Node node=new Node();
-        node.word=w;
-        node.meaning=m;
-        node.next=null;
-        if(head==null)
-        {
-            head=node;
-        }
-        else
-        {
-            Node n=head;
-            while(n.next!=null)
-            {
-                n=n.next;
-            }
-            n.next=node;
-        }
-    }
-    public void show()
-    {
-        Node node = head;
-        while(node.next!=null)
-        {
-            System.out.println(node.word);
-            System.out.println(node.meaning); 
-            node = node.next;
-        }
-        System.out.println(node.word);
-        System.out.println(node.meaning); 
 
-        
-    }
-    public String value(String in)
-    {
-        Node t= head;
-       
-            while(t!=null)
-            {
-                if((t.word).compareTo(in)==0)
-                {
-                    String m1 = t.meaning;
-                    System.out.println(m1);
-                    return m1;
-                }
-                  
-                 t=t.next;
-            }
-            return null;
-        
-    }
-  /*  public String getWord()
-    {
-        Node t=head;
-        while(t!=null)
-        {
-          String m1=t.word;
-          
-          return m1;
-        }
-       return null; 
-    }
-     public String getMeaning()
-    {
-        Node t=head;
-        while(t!=null)
-        {
-          String m1=t.meaning;
-          return m1;
-        }
-       return null; 
-    }  
-  } */
       
 public class options extends javax.swing.JFrame {
    
@@ -124,17 +53,110 @@ public class options extends javax.swing.JFrame {
   //  String wo[]=new String[30];
   //  String mea[]=new String[150];
     int row;
+    int rowCount;
     int i;
     int mean;
     int a;
-    public void nonactive()
+    public void appMenu()
+    {
+        start.setVisible(true);
+        start.setEnabled(true);
+    }
+  /*  public void appMenuC()
+    {
+        start.setVisible(false);
+        start.setEnabled(false);
+    } */
+
+  /*  public void gif()
+    {
+                 Timer time=new Timer();
+         time.schedule(new TimerTask(){
+             
+            
+             @Override
+             public void run()
+                 {
+                      
+                     loading.setVisible(true);
+                     loading.setEnabled(true);
+                     loading.setVisible(false);
+                     loading.setEnabled(false);
+                     appHomeS();
+                 }
+         } , 1500);
+    }  */
+    
+    public void appHomeS()
+    {
+                     home_pan.setVisible(true);
+                     home_pan.setEnabled(true);
+    }
+    public void appHomeC()
+    {
+                     home_pan.setVisible(false);
+                     home_pan.setEnabled(false);
+    }
+    public void slideBarHomeS()
+    {
+        slide_bar_panHome.setVisible(true);
+        slide_bar_panHome.setEnabled(true);
+    }
+     public void slideBarHomeC()
+    {
+        slide_bar_panHome.setVisible(false);
+        slide_bar_panHome.setEnabled(false);
+    }
+     public void slideBarAboutS()
+    {
+        slide_bar_panAbout.setVisible(true);
+        slide_bar_panAbout.setEnabled(true);
+    }
+     public void slideBarAboutC()
+    {
+        slide_bar_panAbout.setVisible(false);
+        slide_bar_panAbout.setEnabled(false);
+    }
+    public void aboutPanS()
+    {
+        about_pannel.setVisible(true);
+        about_pannel.setEnabled(true);
+    }
+     public void aboutPanC()
+    {
+        about_pannel.setVisible(false);
+        about_pannel.setEnabled(false);
+    }
+    public void randomWord()
+    {
+        Random rand = new Random();
+        int r = rand.nextInt(rowCount);
+        int k=0;
+        Node t = head;
+        while(t!=null)
+        {
+            k++;
+            if(k==r)
+            {
+                wod_word.setText(t.word);
+                wod_meaning.setText(t.meaning);
+                break;
+            }
+            t=t.next;
+        }
+     /*   for(int k=1;k<=rowCount;k++)
+        {
+            
+        } */
+    }
+  /*  public void nonactive()
     {
         sbar.setVisible(false);
         sbar.setEnabled(false);
         remove_menu.setVisible(false);
         remove_menu.setEnabled(false);
-        menu.setVisible(true);
-        menu.setEnabled(true);
+        menu_homeTab.setVisible(true);
+        menu_homeTab.setEnabled(true);
         menu_txt.setVisible(false);
         menu_txt.setEnabled(false);
         about.setVisible(false);
@@ -157,8 +179,8 @@ public class options extends javax.swing.JFrame {
         sbar.setEnabled(true);
         remove_menu.setVisible(true);
         remove_menu.setEnabled(true);
-        menu.setVisible(false);
-        menu.setEnabled(false);
+        menu_homeTab.setVisible(false);
+        menu_homeTab.setEnabled(false);
           menu_txt.setVisible(true);
         menu_txt.setEnabled(true);
         about.setVisible(true);
@@ -172,7 +194,7 @@ public class options extends javax.swing.JFrame {
                                    // home button is active and at home page home button is inactive
 
 
-    }
+    } */
   
     
     Node head;
@@ -229,6 +251,7 @@ public class options extends javax.swing.JFrame {
          t=t.next;
             
      }
+     rowCount=crow;
      System.out.println("crow :" +crow);
      t=head;
        while(t!=null)
@@ -394,11 +417,18 @@ public class options extends javax.swing.JFrame {
         
         this.setSize((int)width, (int)height);
         initComponents();
-
+        appMenu();
+      //  gif();
+       loading.setVisible(false);
+       loading.setEnabled(false);
+        appHomeC();
+        slideBarHomeC();
+        slideBarAboutC();
+        aboutPanC();
         insert();
         CreateColumns();
         Populate();
-        nonactive();
+      //  nonactive();
         
                 
     }
@@ -485,18 +515,33 @@ public class options extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        menu = new javax.swing.JLabel();
-        exit = new javax.swing.JButton();
-        home = new javax.swing.JButton();
-        about = new javax.swing.JButton();
+        main_pan = new javax.swing.JPanel();
+        wod = new javax.swing.JPanel();
+        meanSpeak = new javax.swing.JButton();
+        wordSpeak = new javax.swing.JButton();
+        close = new javax.swing.JButton();
+        wod_meaning = new javax.swing.JTextField();
+        wod_word = new javax.swing.JTextField();
+        wod_bg = new javax.swing.JLabel();
+        slide_bar_panHome = new javax.swing.JPanel();
         random = new javax.swing.JButton();
-        remove_menu = new javax.swing.JLabel();
+        exit = new javax.swing.JButton();
+        about = new javax.swing.JButton();
         menu_txt = new javax.swing.JLabel();
         sbar = new javax.swing.JLabel();
+        remove_menu = new javax.swing.JLabel();
+        slide_bar_panAbout = new javax.swing.JPanel();
+        home_about = new javax.swing.JButton();
+        wod_about = new javax.swing.JButton();
+        exit_about = new javax.swing.JButton();
+        menu_txt_about = new javax.swing.JLabel();
+        sbar_about = new javax.swing.JLabel();
+        remove_menuAbout = new javax.swing.JLabel();
         about_pannel = new javax.swing.JPanel();
+        menu_about = new javax.swing.JLabel();
         logo_about = new javax.swing.JLabel();
         ab_pan_bg = new javax.swing.JLabel();
+        home_pan = new javax.swing.JPanel();
         home_tab = new javax.swing.JTabbedPane();
         search = new javax.swing.JPanel();
         speak_meaning = new javax.swing.JButton();
@@ -522,23 +567,63 @@ public class options extends javax.swing.JFrame {
         dword = new javax.swing.JTextField();
         dbutton = new javax.swing.JButton();
         tab_bg = new javax.swing.JLabel();
+        menu_homeTab = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
         w1 = new javax.swing.JLabel();
-        frame = new javax.swing.JLabel();
+        loading = new javax.swing.JPanel();
+        loading_txt = new javax.swing.JLabel();
+        loading_gif = new javax.swing.JLabel();
+        start = new javax.swing.JPanel();
+        app_icon = new javax.swing.JLabel();
+        app_menu = new javax.swing.JLabel();
+        frame_start = new javax.swing.JLabel();
         bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setLayout(null);
+        main_pan.setLayout(null);
 
-        menu.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\menu.jpg")); // NOI18N
-        menu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuMouseClicked(evt);
+        wod.setLayout(null);
+        wod.add(meanSpeak);
+        meanSpeak.setBounds(430, 150, 60, 50);
+        wod.add(wordSpeak);
+        wordSpeak.setBounds(280, 50, 80, 50);
+
+        close.setText("CLOSE");
+        wod.add(close);
+        close.setBounds(193, 223, 90, 30);
+
+        wod_meaning.setEditable(false);
+        wod_meaning.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        wod.add(wod_meaning);
+        wod_meaning.setBounds(30, 130, 380, 50);
+
+        wod_word.setEditable(false);
+        wod_word.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        wod_word.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wod_wordActionPerformed(evt);
             }
         });
-        jPanel1.add(menu);
-        menu.setBounds(430, 90, 50, 50);
+        wod.add(wod_word);
+        wod_word.setBounds(40, 50, 210, 40);
+        wod.add(wod_bg);
+        wod_bg.setBounds(0, 0, 480, 280);
+
+        main_pan.add(wod);
+        wod.setBounds(475, 190, 510, 280);
+
+        slide_bar_panHome.setLayout(null);
+
+        random.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        random.setText("WORD OF THE DAY");
+        random.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                randomActionPerformed(evt);
+            }
+        });
+        slide_bar_panHome.add(random);
+        random.setBounds(0, 240, 320, 40);
 
         exit.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         exit.setText("EXIT");
@@ -547,18 +632,8 @@ public class options extends javax.swing.JFrame {
                 exitActionPerformed(evt);
             }
         });
-        jPanel1.add(exit);
-        exit.setBounds(420, 340, 320, 40);
-
-        home.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        home.setText("HOME");
-        home.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                homeActionPerformed(evt);
-            }
-        });
-        jPanel1.add(home);
-        home.setBounds(420, 420, 320, 40);
+        slide_bar_panHome.add(exit);
+        exit.setBounds(0, 320, 320, 40);
 
         about.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         about.setText("ABOUT US");
@@ -567,13 +642,18 @@ public class options extends javax.swing.JFrame {
                 aboutActionPerformed(evt);
             }
         });
-        jPanel1.add(about);
-        about.setBounds(420, 190, 320, 40);
+        slide_bar_panHome.add(about);
+        about.setBounds(0, 160, 320, 40);
 
-        random.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        random.setText("WORD OF THE DAY");
-        jPanel1.add(random);
-        random.setBounds(420, 270, 320, 40);
+        menu_txt.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        menu_txt.setForeground(new java.awt.Color(255, 255, 255));
+        menu_txt.setText("MENU");
+        slide_bar_panHome.add(menu_txt);
+        menu_txt.setBounds(120, 70, 90, 40);
+
+        sbar.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\sbar.jpg")); // NOI18N
+        slide_bar_panHome.add(sbar);
+        sbar.setBounds(0, 0, 320, 640);
 
         remove_menu.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\blur_image.jpg")); // NOI18N
         remove_menu.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -581,31 +661,84 @@ public class options extends javax.swing.JFrame {
                 remove_menuMouseClicked(evt);
             }
         });
-        jPanel1.add(remove_menu);
-        remove_menu.setBounds(740, 74, 300, 630);
+        slide_bar_panHome.add(remove_menu);
+        remove_menu.setBounds(320, 0, 300, 635);
 
-        menu_txt.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        menu_txt.setForeground(new java.awt.Color(255, 255, 255));
-        menu_txt.setText("MENU");
-        jPanel1.add(menu_txt);
-        menu_txt.setBounds(520, 110, 90, 40);
+        main_pan.add(slide_bar_panHome);
+        slide_bar_panHome.setBounds(420, 70, 620, 635);
 
-        sbar.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\sbar.jpg")); // NOI18N
-        jPanel1.add(sbar);
-        sbar.setBounds(420, 74, 320, 630);
+        slide_bar_panAbout.setLayout(null);
+
+        home_about.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        home_about.setText("HOME");
+        home_about.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                home_aboutActionPerformed(evt);
+            }
+        });
+        slide_bar_panAbout.add(home_about);
+        home_about.setBounds(0, 160, 320, 40);
+
+        wod_about.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        wod_about.setText("WORD OF THE DAY");
+        slide_bar_panAbout.add(wod_about);
+        wod_about.setBounds(0, 240, 320, 40);
+
+        exit_about.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        exit_about.setText("EXIT");
+        exit_about.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exit_aboutActionPerformed(evt);
+            }
+        });
+        slide_bar_panAbout.add(exit_about);
+        exit_about.setBounds(0, 320, 320, 40);
+
+        menu_txt_about.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        menu_txt_about.setForeground(new java.awt.Color(255, 255, 255));
+        menu_txt_about.setText("MENU");
+        slide_bar_panAbout.add(menu_txt_about);
+        menu_txt_about.setBounds(120, 70, 130, 60);
+
+        sbar_about.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\sbar.jpg")); // NOI18N
+        slide_bar_panAbout.add(sbar_about);
+        sbar_about.setBounds(0, 0, 320, 635);
+
+        remove_menuAbout.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\blur_image.jpg")); // NOI18N
+        remove_menuAbout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                remove_menuAboutMouseClicked(evt);
+            }
+        });
+        slide_bar_panAbout.add(remove_menuAbout);
+        remove_menuAbout.setBounds(320, 0, 300, 635);
+
+        main_pan.add(slide_bar_panAbout);
+        slide_bar_panAbout.setBounds(420, 70, 620, 635);
 
         about_pannel.setLayout(null);
 
+        menu_about.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\menu.jpg")); // NOI18N
+        menu_about.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menu_aboutMouseClicked(evt);
+            }
+        });
+        about_pannel.add(menu_about);
+        menu_about.setBounds(20, 60, 50, 50);
+
         logo_about.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dict/dict_logo1 (1).jpg"))); // NOI18N
         about_pannel.add(logo_about);
-        logo_about.setBounds(0, 0, 620, 100);
+        logo_about.setBounds(0, 35, 620, 100);
 
         ab_pan_bg.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\tab(1).jpg")); // NOI18N
         about_pannel.add(ab_pan_bg);
         ab_pan_bg.setBounds(0, 135, 620, 500);
 
-        jPanel1.add(about_pannel);
+        main_pan.add(about_pannel);
         about_pannel.setBounds(420, 70, 620, 635);
+
+        home_pan.setLayout(null);
 
         search.setLayout(null);
 
@@ -669,7 +802,7 @@ public class options extends javax.swing.JFrame {
 
         search_bg.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\tab(1).jpg")); // NOI18N
         search.add(search_bg);
-        search_bg.setBounds(-5, 0, 620, 500);
+        search_bg.setBounds(0, 0, 620, 500);
 
         home_tab.addTab("SEARCH", search);
 
@@ -839,35 +972,80 @@ public class options extends javax.swing.JFrame {
         home_tab.addTab("DELETE", delete);
         delete.getAccessibleContext().setAccessibleName("");
 
-        jPanel1.add(home_tab);
-        home_tab.setBounds(420, 180, 620, 520);
+        home_pan.add(home_tab);
+        home_tab.setBounds(0, 110, 620, 540);
         home_tab.getAccessibleContext().setAccessibleName("SEARCH");
 
+        menu_homeTab.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\menu.jpg")); // NOI18N
+        menu_homeTab.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menu_homeTabMouseClicked(evt);
+            }
+        });
+        home_pan.add(menu_homeTab);
+        menu_homeTab.setBounds(20, 30, 50, 50);
+
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dict/dict_logo1 (1).jpg"))); // NOI18N
-        jPanel1.add(logo);
-        logo.setBounds(420, 75, 620, 100);
+        home_pan.add(logo);
+        logo.setBounds(0, 10, 620, 100);
 
         w1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dict/w1.jpg"))); // NOI18N
-        jPanel1.add(w1);
-        w1.setBounds(420, 75, 620, 430);
+        home_pan.add(w1);
+        w1.setBounds(50, 75, 620, 630);
 
-        frame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dict/frame.jpg"))); // NOI18N
-        jPanel1.add(frame);
-        frame.setBounds(370, 0, 720, 780);
+        main_pan.add(home_pan);
+        home_pan.setBounds(420, 70, 620, 635);
+
+        loading.setLayout(null);
+
+        loading_txt.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        loading_txt.setForeground(new java.awt.Color(255, 255, 255));
+        loading_txt.setText("LOADING");
+        loading.add(loading_txt);
+        loading_txt.setBounds(240, 510, 210, 60);
+
+        loading_gif.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\loading_gif(1).gif")); // NOI18N
+        loading.add(loading_gif);
+        loading_gif.setBounds(0, 0, 620, 635);
+
+        main_pan.add(loading);
+        loading.setBounds(420, 70, 620, 635);
+
+        start.setLayout(null);
+
+        app_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dict/icon (1).jpg"))); // NOI18N
+        app_icon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                app_iconMouseClicked(evt);
+            }
+        });
+        start.add(app_icon);
+        app_icon.setBounds(400, 510, 70, 80);
+
+        app_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dict/home_screen 1.jpg"))); // NOI18N
+        start.add(app_menu);
+        app_menu.setBounds(50, 69, 630, 640);
+
+        frame_start.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Documents\\NetBeansProjects\\dictionary\\src\\dict\\frame.jpg")); // NOI18N
+        start.add(frame_start);
+        frame_start.setBounds(0, 0, 720, 780);
+
+        main_pan.add(start);
+        start.setBounds(370, -1, 720, 790);
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dict/bg.jpg"))); // NOI18N
-        jPanel1.add(bg);
-        bg.setBounds(0, 0, 1370, 780);
+        main_pan.add(bg);
+        bg.setBounds(0, 0, 1400, 790);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1393, Short.MAX_VALUE)
+            .addComponent(main_pan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1393, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE)
+            .addComponent(main_pan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE)
         );
 
         pack();
@@ -1218,9 +1396,11 @@ public class options extends javax.swing.JFrame {
         delete();
     }//GEN-LAST:event_dbuttonActionPerformed
   //int o = 420;
-    private void menuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuMouseClicked
+    private void menu_homeTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_homeTabMouseClicked
         // TODO add your handling code here:
-        active();
+        appHomeC();
+        slideBarHomeS();
+     //   active();
       
      /*   if(o==420)
         {
@@ -1247,15 +1427,17 @@ public class options extends javax.swing.JFrame {
               o=420;
             
         } */
-    }//GEN-LAST:event_menuMouseClicked
+    }//GEN-LAST:event_menu_homeTabMouseClicked
 
     private void remove_menuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_remove_menuMouseClicked
         // TODO add your handling code here:
-        nonactive();
+     //   nonactive();
+     slideBarHomeC();
+     appHomeS();
     }//GEN-LAST:event_remove_menuMouseClicked
-
-    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
-          try {
+public void updateDB()
+{
+     try {
               // TODO add your handling code here:
               // delete data :
               Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/dict?zeroDateTimeBehavior=convertToNull", "root", "viresh");
@@ -1294,9 +1476,13 @@ public class options extends javax.swing.JFrame {
                  } catch (SQLException ex) {
               Logger.getLogger(options.class.getName()).log(Level.SEVERE, null, ex);
           }
-         start s1=new start();
-              s1.setVisible(true);        
-              dispose();
+    
+}
+    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
+         
+         updateDB();
+         appHomeC();
+         slideBarHomeC();
 
     }//GEN-LAST:event_exitActionPerformed
     public static final String VOICENAME="kevin16";
@@ -1388,22 +1574,58 @@ public class options extends javax.swing.JFrame {
 
     private void aboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutActionPerformed
         // TODO add your handling code here:
-        nonactive();
-        about_pannel.setVisible(true);
-        about_pannel.setEnabled(true);
+        slideBarHomeC();
+        aboutPanS();
+     //   nonactive();
+     //   about_pannel.setVisible(true);
+      //  about_pannel.setEnabled(true);
      /*    menu.setVisible(true);
         menu.setEnabled(true);
         active(); */
          
     }//GEN-LAST:event_aboutActionPerformed
 
-    private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed
+    private void randomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_randomActionPerformed
         // TODO add your handling code here:
-        nonactive();
-        home_tab.setVisible(true);
-        home_tab.setEnabled(true);
+    }//GEN-LAST:event_randomActionPerformed
 
-    }//GEN-LAST:event_homeActionPerformed
+    private void menu_aboutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_aboutMouseClicked
+        // TODO add your handling code here:
+        aboutPanC();
+        slideBarAboutS();
+    }//GEN-LAST:event_menu_aboutMouseClicked
+
+    private void home_aboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_home_aboutActionPerformed
+        // TODO add your handling code here:
+        slideBarAboutC();
+        appHomeS();
+
+    }//GEN-LAST:event_home_aboutActionPerformed
+
+    private void exit_aboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exit_aboutActionPerformed
+        // TODO add your handling code here:
+        updateDB();
+        slideBarAboutC();
+        appHomeC();
+        
+    }//GEN-LAST:event_exit_aboutActionPerformed
+
+    private void app_iconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_app_iconMouseClicked
+        // TODO add your handling code here:
+      //  appMenuC();
+        appHomeS();
+        
+    }//GEN-LAST:event_app_iconMouseClicked
+
+    private void remove_menuAboutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_remove_menuAboutMouseClicked
+        // TODO add your handling code here:
+        slideBarAboutC();
+        aboutPanS();
+    }//GEN-LAST:event_remove_menuAboutMouseClicked
+
+    private void wod_wordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wod_wordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_wod_wordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1462,42 +1684,64 @@ public class options extends javax.swing.JFrame {
     private javax.swing.JLabel ab_pan_bg;
     private javax.swing.JButton about;
     private javax.swing.JPanel about_pannel;
+    private javax.swing.JLabel app_icon;
+    private javax.swing.JLabel app_menu;
     private javax.swing.JLabel bg;
     private javax.swing.JLabel bg_insert;
+    private javax.swing.JButton close;
     private javax.swing.JButton dbutton;
     private javax.swing.JPanel delete;
     private javax.swing.JTextField dword;
     private javax.swing.JButton exit;
-    private javax.swing.JLabel frame;
-    private javax.swing.JButton home;
+    private javax.swing.JButton exit_about;
+    private javax.swing.JLabel frame_start;
+    private javax.swing.JButton home_about;
+    private javax.swing.JPanel home_pan;
     private javax.swing.JTabbedPane home_tab;
     private javax.swing.JPanel insert;
     private javax.swing.JButton insertIn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel loading;
+    private javax.swing.JLabel loading_gif;
+    private javax.swing.JLabel loading_txt;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel logo_about;
+    private javax.swing.JPanel main_pan;
     private javax.swing.JTextField meanIn;
+    private javax.swing.JButton meanSpeak;
     private javax.swing.JTextField meaning1;
-    private javax.swing.JLabel menu;
+    private javax.swing.JLabel menu_about;
+    private javax.swing.JLabel menu_homeTab;
     private javax.swing.JLabel menu_txt;
+    private javax.swing.JLabel menu_txt_about;
     private javax.swing.JTextField op;
     private javax.swing.JButton random;
     private javax.swing.JLabel remove_menu;
+    private javax.swing.JLabel remove_menuAbout;
     private javax.swing.JTextField result;
     private javax.swing.JLabel sbar;
+    private javax.swing.JLabel sbar_about;
     private javax.swing.JPanel search;
     private javax.swing.JLabel search_bg;
     private javax.swing.JPanel see_all_words;
+    private javax.swing.JPanel slide_bar_panAbout;
+    private javax.swing.JPanel slide_bar_panHome;
     private javax.swing.JButton speak_meaning;
     private javax.swing.JButton speak_word;
+    private javax.swing.JPanel start;
     private javax.swing.JLabel tab_bg;
     private javax.swing.JTable traversal;
     private javax.swing.JTextField txt;
     private javax.swing.JLabel w1;
+    private javax.swing.JPanel wod;
+    private javax.swing.JButton wod_about;
+    private javax.swing.JLabel wod_bg;
+    private javax.swing.JTextField wod_meaning;
+    private javax.swing.JTextField wod_word;
     private javax.swing.JTextField word;
     private javax.swing.JTextField wordIn;
+    private javax.swing.JButton wordSpeak;
     // End of variables declaration//GEN-END:variables
 }
