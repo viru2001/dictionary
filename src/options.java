@@ -9,21 +9,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.RowFilter;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
-import javax.swing.table.TableRowSorter;
-import org.apache.derby.iapi.sql.PreparedStatement;
-import java.io.*;
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
 import java.util.Random;
-import java.util.TimerTask;
-//import javax.swing.Timer;
-import java.util.Timer;
 //import java.util.TimerTask;
 
 
@@ -53,7 +43,7 @@ public class options extends javax.swing.JFrame {
   //  String wo[]=new String[30];
   //  String mea[]=new String[150];
     int row;
-    int rowCount;
+   // int rowCount;
     int i;
     int mean;
     int a;
@@ -127,22 +117,39 @@ public class options extends javax.swing.JFrame {
         about_pannel.setVisible(false);
         about_pannel.setEnabled(false);
     }
+      public void wodS()
+    {
+        wod.setVisible(true);
+        wod.setEnabled(true);
+    }
+     public void wodC()
+    {
+        wod.setVisible(false);
+        wod.setEnabled(false);
+    }
     public void randomWord()
     {
+        int rowCount=0;
         Random rand = new Random();
+        Node t=head;
+        while(t!=null)
+        {
+         rowCount++;   
+         t=t.next;   
+        }
         int r = rand.nextInt(rowCount);
         int k=0;
-        Node t = head;
-        while(t!=null)
+        Node t1 = head;
+        while(t1!=null)
         {
             k++;
             if(k==r)
             {
-                wod_word.setText(t.word);
-                wod_meaning.setText(t.meaning);
+                wod_word.setText(t1.word);
+                wod_meaning.setText(t1.meaning);
                 break;
             }
-            t=t.next;
+            t1=t1.next;
         }
      /*   for(int k=1;k<=rowCount;k++)
         {
@@ -251,7 +258,7 @@ public class options extends javax.swing.JFrame {
          t=t.next;
             
      }
-     rowCount=crow;
+   //  rowCount=crow;
      System.out.println("crow :" +crow);
      t=head;
        while(t!=null)
@@ -299,7 +306,7 @@ public class options extends javax.swing.JFrame {
              t=head;
              for(int h=1;h<count-1;h++)
             {
-                  t=t.next;
+                 t=t.next;
             }
              t.next=n;
              b++;
@@ -425,6 +432,7 @@ public class options extends javax.swing.JFrame {
         slideBarHomeC();
         slideBarAboutC();
         aboutPanC();
+        wodC();
         insert();
         CreateColumns();
         Populate();
@@ -522,14 +530,8 @@ public class options extends javax.swing.JFrame {
         close = new javax.swing.JButton();
         wod_meaning = new javax.swing.JTextField();
         wod_word = new javax.swing.JTextField();
+        disp_random = new javax.swing.JLabel();
         wod_bg = new javax.swing.JLabel();
-        slide_bar_panHome = new javax.swing.JPanel();
-        random = new javax.swing.JButton();
-        exit = new javax.swing.JButton();
-        about = new javax.swing.JButton();
-        menu_txt = new javax.swing.JLabel();
-        sbar = new javax.swing.JLabel();
-        remove_menu = new javax.swing.JLabel();
         slide_bar_panAbout = new javax.swing.JPanel();
         home_about = new javax.swing.JButton();
         wod_about = new javax.swing.JButton();
@@ -538,10 +540,22 @@ public class options extends javax.swing.JFrame {
         sbar_about = new javax.swing.JLabel();
         remove_menuAbout = new javax.swing.JLabel();
         about_pannel = new javax.swing.JPanel();
+        topbar1 = new javax.swing.JLabel();
+        jay_txt = new javax.swing.JLabel();
+        proj_txt = new javax.swing.JLabel();
+        abhi_txt = new javax.swing.JLabel();
+        viru_txt = new javax.swing.JLabel();
         menu_about = new javax.swing.JLabel();
-        logo_about = new javax.swing.JLabel();
         ab_pan_bg = new javax.swing.JLabel();
+        slide_bar_panHome = new javax.swing.JPanel();
+        random = new javax.swing.JButton();
+        exit = new javax.swing.JButton();
+        about = new javax.swing.JButton();
+        menu_txt = new javax.swing.JLabel();
+        sbar = new javax.swing.JLabel();
+        remove_menu = new javax.swing.JLabel();
         home_pan = new javax.swing.JPanel();
+        topbar = new javax.swing.JLabel();
         home_tab = new javax.swing.JTabbedPane();
         search = new javax.swing.JPanel();
         speak_meaning = new javax.swing.JButton();
@@ -551,7 +565,7 @@ public class options extends javax.swing.JFrame {
         word = new javax.swing.JTextField();
         search_bg = new javax.swing.JLabel();
         insert = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        insert_txt = new javax.swing.JLabel();
         op = new javax.swing.JTextField();
         insertIn = new javax.swing.JButton();
         wordIn = new javax.swing.JTextField();
@@ -561,7 +575,7 @@ public class options extends javax.swing.JFrame {
         txt = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         traversal = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        saw_bg = new javax.swing.JLabel();
         delete = new javax.swing.JPanel();
         result = new javax.swing.JTextField();
         dword = new javax.swing.JTextField();
@@ -569,7 +583,6 @@ public class options extends javax.swing.JFrame {
         tab_bg = new javax.swing.JLabel();
         menu_homeTab = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
-        w1 = new javax.swing.JLabel();
         loading = new javax.swing.JPanel();
         loading_txt = new javax.swing.JLabel();
         loading_gif = new javax.swing.JLabel();
@@ -584,19 +597,43 @@ public class options extends javax.swing.JFrame {
         main_pan.setLayout(null);
 
         wod.setLayout(null);
+
+        meanSpeak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/speak_icon-3-.png"))); // NOI18N
+        meanSpeak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                meanSpeakActionPerformed(evt);
+            }
+        });
         wod.add(meanSpeak);
-        meanSpeak.setBounds(430, 150, 60, 50);
+        meanSpeak.setBounds(470, 310, 50, 50);
+
+        wordSpeak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/speak_icon-3-.png"))); // NOI18N
+        wordSpeak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wordSpeakActionPerformed(evt);
+            }
+        });
         wod.add(wordSpeak);
-        wordSpeak.setBounds(280, 50, 80, 50);
+        wordSpeak.setBounds(320, 240, 50, 50);
 
         close.setText("CLOSE");
+        close.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeActionPerformed(evt);
+            }
+        });
         wod.add(close);
-        close.setBounds(193, 223, 90, 30);
+        close.setBounds(250, 410, 90, 30);
 
         wod_meaning.setEditable(false);
         wod_meaning.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        wod_meaning.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wod_meaningActionPerformed(evt);
+            }
+        });
         wod.add(wod_meaning);
-        wod_meaning.setBounds(30, 130, 380, 50);
+        wod_meaning.setBounds(90, 310, 360, 50);
 
         wod_word.setEditable(false);
         wod_word.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -606,12 +643,113 @@ public class options extends javax.swing.JFrame {
             }
         });
         wod.add(wod_word);
-        wod_word.setBounds(40, 50, 210, 40);
+        wod_word.setBounds(90, 240, 210, 50);
+
+        disp_random.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dispWod.jpg"))); // NOI18N
+        wod.add(disp_random);
+        disp_random.setBounds(80, 200, 450, 280);
+
+        wod_bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/blur_image(1).jpg"))); // NOI18N
         wod.add(wod_bg);
-        wod_bg.setBounds(0, 0, 480, 280);
+        wod_bg.setBounds(0, 0, 620, 635);
 
         main_pan.add(wod);
-        wod.setBounds(475, 190, 510, 280);
+        wod.setBounds(420, 70, 620, 635);
+
+        slide_bar_panAbout.setLayout(null);
+
+        home_about.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        home_about.setText("HOME");
+        home_about.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                home_aboutActionPerformed(evt);
+            }
+        });
+        slide_bar_panAbout.add(home_about);
+        home_about.setBounds(0, 160, 320, 40);
+
+        wod_about.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        wod_about.setText("WORD OF THE DAY");
+        wod_about.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wod_aboutActionPerformed(evt);
+            }
+        });
+        slide_bar_panAbout.add(wod_about);
+        wod_about.setBounds(0, 240, 320, 40);
+
+        exit_about.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        exit_about.setText("EXIT");
+        exit_about.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exit_aboutActionPerformed(evt);
+            }
+        });
+        slide_bar_panAbout.add(exit_about);
+        exit_about.setBounds(0, 320, 320, 40);
+
+        menu_txt_about.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        menu_txt_about.setForeground(new java.awt.Color(255, 255, 255));
+        menu_txt_about.setText("MENU");
+        slide_bar_panAbout.add(menu_txt_about);
+        menu_txt_about.setBounds(120, 70, 130, 60);
+
+        sbar_about.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sbar.jpg"))); // NOI18N
+        slide_bar_panAbout.add(sbar_about);
+        sbar_about.setBounds(0, 0, 320, 635);
+
+        remove_menuAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/blur_image.jpg"))); // NOI18N
+        remove_menuAbout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                remove_menuAboutMouseClicked(evt);
+            }
+        });
+        slide_bar_panAbout.add(remove_menuAbout);
+        remove_menuAbout.setBounds(320, 0, 300, 635);
+
+        main_pan.add(slide_bar_panAbout);
+        slide_bar_panAbout.setBounds(420, 70, 620, 635);
+
+        about_pannel.setLayout(null);
+
+        topbar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/home_screen 1(1).jpg"))); // NOI18N
+        about_pannel.add(topbar1);
+        topbar1.setBounds(0, 0, 620, 10);
+
+        jay_txt.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jay_txt.setText("AJAY CHODANKAR");
+        about_pannel.add(jay_txt);
+        jay_txt.setBounds(120, 350, 200, 40);
+
+        proj_txt.setText("PROJECT BY ");
+        about_pannel.add(proj_txt);
+        proj_txt.setBounds(110, 280, 180, 30);
+
+        abhi_txt.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
+        abhi_txt.setText("ABHISHEK BHINGLE");
+        about_pannel.add(abhi_txt);
+        abhi_txt.setBounds(120, 410, 200, 30);
+
+        viru_txt.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        viru_txt.setText("VIRESH SHASHIKANT FEGADE");
+        about_pannel.add(viru_txt);
+        viru_txt.setBounds(120, 460, 300, 30);
+
+        menu_about.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu.jpg"))); // NOI18N
+        menu_about.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menu_aboutMouseClicked(evt);
+            }
+        });
+        about_pannel.add(menu_about);
+        menu_about.setBounds(10, 40, 50, 50);
+
+        ab_pan_bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tab-1-.jpg"))); // NOI18N
+        about_pannel.add(ab_pan_bg);
+        ab_pan_bg.setBounds(0, 0, 620, 635);
+
+        main_pan.add(about_pannel);
+        about_pannel.setBounds(420, 70, 620, 635);
 
         slide_bar_panHome.setLayout(null);
 
@@ -651,11 +789,11 @@ public class options extends javax.swing.JFrame {
         slide_bar_panHome.add(menu_txt);
         menu_txt.setBounds(120, 70, 90, 40);
 
-        sbar.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\sbar.jpg")); // NOI18N
+        sbar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sbar.jpg"))); // NOI18N
         slide_bar_panHome.add(sbar);
         sbar.setBounds(0, 0, 320, 640);
 
-        remove_menu.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\blur_image.jpg")); // NOI18N
+        remove_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/blur_image.jpg"))); // NOI18N
         remove_menu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 remove_menuMouseClicked(evt);
@@ -667,82 +805,15 @@ public class options extends javax.swing.JFrame {
         main_pan.add(slide_bar_panHome);
         slide_bar_panHome.setBounds(420, 70, 620, 635);
 
-        slide_bar_panAbout.setLayout(null);
-
-        home_about.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        home_about.setText("HOME");
-        home_about.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                home_aboutActionPerformed(evt);
-            }
-        });
-        slide_bar_panAbout.add(home_about);
-        home_about.setBounds(0, 160, 320, 40);
-
-        wod_about.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        wod_about.setText("WORD OF THE DAY");
-        slide_bar_panAbout.add(wod_about);
-        wod_about.setBounds(0, 240, 320, 40);
-
-        exit_about.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        exit_about.setText("EXIT");
-        exit_about.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exit_aboutActionPerformed(evt);
-            }
-        });
-        slide_bar_panAbout.add(exit_about);
-        exit_about.setBounds(0, 320, 320, 40);
-
-        menu_txt_about.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        menu_txt_about.setForeground(new java.awt.Color(255, 255, 255));
-        menu_txt_about.setText("MENU");
-        slide_bar_panAbout.add(menu_txt_about);
-        menu_txt_about.setBounds(120, 70, 130, 60);
-
-        sbar_about.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\sbar.jpg")); // NOI18N
-        slide_bar_panAbout.add(sbar_about);
-        sbar_about.setBounds(0, 0, 320, 635);
-
-        remove_menuAbout.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\blur_image.jpg")); // NOI18N
-        remove_menuAbout.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                remove_menuAboutMouseClicked(evt);
-            }
-        });
-        slide_bar_panAbout.add(remove_menuAbout);
-        remove_menuAbout.setBounds(320, 0, 300, 635);
-
-        main_pan.add(slide_bar_panAbout);
-        slide_bar_panAbout.setBounds(420, 70, 620, 635);
-
-        about_pannel.setLayout(null);
-
-        menu_about.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\menu.jpg")); // NOI18N
-        menu_about.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menu_aboutMouseClicked(evt);
-            }
-        });
-        about_pannel.add(menu_about);
-        menu_about.setBounds(20, 60, 50, 50);
-
-        logo_about.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dict/dict_logo1 (1).jpg"))); // NOI18N
-        about_pannel.add(logo_about);
-        logo_about.setBounds(0, 35, 620, 100);
-
-        ab_pan_bg.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\tab(1).jpg")); // NOI18N
-        about_pannel.add(ab_pan_bg);
-        ab_pan_bg.setBounds(0, 135, 620, 500);
-
-        main_pan.add(about_pannel);
-        about_pannel.setBounds(420, 70, 620, 635);
-
         home_pan.setLayout(null);
+
+        topbar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/home_screen 1(1).jpg"))); // NOI18N
+        home_pan.add(topbar);
+        topbar.setBounds(0, 0, 620, 10);
 
         search.setLayout(null);
 
-        speak_meaning.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\speak_icon-3-(1).png")); // NOI18N
+        speak_meaning.setIcon(new javax.swing.ImageIcon(getClass().getResource("/speak_icon-3-(1).png"))); // NOI18N
         speak_meaning.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 speak_meaningActionPerformed(evt);
@@ -751,7 +822,7 @@ public class options extends javax.swing.JFrame {
         search.add(speak_meaning);
         speak_meaning.setBounds(530, 210, 70, 70);
 
-        speak_word.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\speak_icon-3-.png")); // NOI18N
+        speak_word.setIcon(new javax.swing.ImageIcon(getClass().getResource("/speak_icon-3-.png"))); // NOI18N
         speak_word.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 speak_wordActionPerformed(evt);
@@ -766,7 +837,7 @@ public class options extends javax.swing.JFrame {
         meaning1.setBounds(10, 170, 510, 140);
 
         Search.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Search.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\search_icon-1-(1).jpg")); // NOI18N
+        Search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/search_icon-1-(1).jpg"))); // NOI18N
         Search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SearchActionPerformed(evt);
@@ -800,7 +871,7 @@ public class options extends javax.swing.JFrame {
         search.add(word);
         word.setBounds(20, 30, 350, 50);
 
-        search_bg.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\tab(1).jpg")); // NOI18N
+        search_bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tab(1).jpg"))); // NOI18N
         search.add(search_bg);
         search_bg.setBounds(0, 0, 620, 500);
 
@@ -808,11 +879,11 @@ public class options extends javax.swing.JFrame {
 
         insert.setLayout(null);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("INSERT");
-        insert.add(jLabel2);
-        jLabel2.setBounds(270, 250, 90, 30);
+        insert_txt.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        insert_txt.setForeground(new java.awt.Color(255, 255, 255));
+        insert_txt.setText("INSERT");
+        insert.add(insert_txt);
+        insert_txt.setBounds(270, 250, 90, 30);
 
         op.setEditable(false);
         op.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -824,7 +895,7 @@ public class options extends javax.swing.JFrame {
         insert.add(op);
         op.setBounds(100, 330, 400, 40);
 
-        insertIn.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\white insert.png")); // NOI18N
+        insertIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/white insert.png"))); // NOI18N
         insertIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 insertInActionPerformed(evt);
@@ -871,7 +942,7 @@ public class options extends javax.swing.JFrame {
         insert.add(meanIn);
         meanIn.setBounds(100, 140, 420, 80);
 
-        bg_insert.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\tab(1).jpg")); // NOI18N
+        bg_insert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tab(1).jpg"))); // NOI18N
         bg_insert.setText("jabel2");
         insert.add(bg_insert);
         bg_insert.setBounds(0, 0, 620, 490);
@@ -919,9 +990,9 @@ public class options extends javax.swing.JFrame {
         see_all_words.add(jScrollPane1);
         jScrollPane1.setBounds(0, 60, 620, 430);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\tab(1).jpg")); // NOI18N
-        see_all_words.add(jLabel1);
-        jLabel1.setBounds(0, 0, 620, 500);
+        saw_bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tab(1).jpg"))); // NOI18N
+        see_all_words.add(saw_bg);
+        saw_bg.setBounds(0, 0, 620, 500);
 
         home_tab.addTab("SEE ALL WORDS", see_all_words);
 
@@ -956,7 +1027,7 @@ public class options extends javax.swing.JFrame {
         delete.add(dword);
         dword.setBounds(30, 85, 340, 60);
 
-        dbutton.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\delete fixed.jpg")); // NOI18N
+        dbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/delete fixed.jpg"))); // NOI18N
         dbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dbuttonActionPerformed(evt);
@@ -965,7 +1036,7 @@ public class options extends javax.swing.JFrame {
         delete.add(dbutton);
         dbutton.setBounds(400, 90, 160, 50);
 
-        tab_bg.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\tab(1).jpg")); // NOI18N
+        tab_bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tab(1).jpg"))); // NOI18N
         delete.add(tab_bg);
         tab_bg.setBounds(0, 0, 620, 500);
 
@@ -976,7 +1047,7 @@ public class options extends javax.swing.JFrame {
         home_tab.setBounds(0, 110, 620, 540);
         home_tab.getAccessibleContext().setAccessibleName("SEARCH");
 
-        menu_homeTab.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\menu.jpg")); // NOI18N
+        menu_homeTab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu.jpg"))); // NOI18N
         menu_homeTab.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menu_homeTabMouseClicked(evt);
@@ -985,13 +1056,9 @@ public class options extends javax.swing.JFrame {
         home_pan.add(menu_homeTab);
         menu_homeTab.setBounds(20, 30, 50, 50);
 
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dict/dict_logo1 (1).jpg"))); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dict_logo1 (1).jpg"))); // NOI18N
         home_pan.add(logo);
         logo.setBounds(0, 10, 620, 100);
-
-        w1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dict/w1.jpg"))); // NOI18N
-        home_pan.add(w1);
-        w1.setBounds(50, 75, 620, 630);
 
         main_pan.add(home_pan);
         home_pan.setBounds(420, 70, 620, 635);
@@ -1004,16 +1071,16 @@ public class options extends javax.swing.JFrame {
         loading.add(loading_txt);
         loading_txt.setBounds(240, 510, 210, 60);
 
-        loading_gif.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\loading_gif(1).gif")); // NOI18N
+        loading_gif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/loading_gif(1).gif"))); // NOI18N
         loading.add(loading_gif);
         loading_gif.setBounds(0, 0, 620, 635);
 
         main_pan.add(loading);
-        loading.setBounds(420, 70, 620, 635);
+        loading.setBounds(420, 80, 620, 625);
 
         start.setLayout(null);
 
-        app_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dict/icon (1).jpg"))); // NOI18N
+        app_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon (1).jpg"))); // NOI18N
         app_icon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 app_iconMouseClicked(evt);
@@ -1022,18 +1089,18 @@ public class options extends javax.swing.JFrame {
         start.add(app_icon);
         app_icon.setBounds(400, 510, 70, 80);
 
-        app_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dict/home_screen 1.jpg"))); // NOI18N
+        app_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/home_screen 1.jpg"))); // NOI18N
         start.add(app_menu);
         app_menu.setBounds(50, 69, 630, 640);
 
-        frame_start.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Documents\\NetBeansProjects\\dictionary\\src\\dict\\frame.jpg")); // NOI18N
+        frame_start.setIcon(new javax.swing.ImageIcon(getClass().getResource("/frame.jpg"))); // NOI18N
         start.add(frame_start);
         frame_start.setBounds(0, 0, 720, 780);
 
         main_pan.add(start);
         start.setBounds(370, -1, 720, 790);
 
-        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dict/bg.jpg"))); // NOI18N
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bg.jpg"))); // NOI18N
         main_pan.add(bg);
         bg.setBounds(0, 0, 1400, 790);
 
@@ -1587,6 +1654,10 @@ public void updateDB()
 
     private void randomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_randomActionPerformed
         // TODO add your handling code here:
+        slideBarHomeC();
+        
+        wodS();
+        randomWord();
     }//GEN-LAST:event_randomActionPerformed
 
     private void menu_aboutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_aboutMouseClicked
@@ -1626,6 +1697,45 @@ public void updateDB()
     private void wod_wordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wod_wordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_wod_wordActionPerformed
+
+    private void wod_meaningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wod_meaningActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_wod_meaningActionPerformed
+
+    private void wordSpeakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wordSpeakActionPerformed
+        // TODO add your handling code here:
+          System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
+      Voice v;
+      VoiceManager vm=VoiceManager.getInstance();
+     // voice=vm.getVoice(VOICENAME);
+      v = vm.getVoice(VOICENAME);
+      v.allocate(); 
+      v.speak(wod_word.getText());
+    }//GEN-LAST:event_wordSpeakActionPerformed
+
+    private void wod_aboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wod_aboutActionPerformed
+        // TODO add your handling code here:
+        slideBarAboutC();
+        wodS();
+        randomWord();
+    }//GEN-LAST:event_wod_aboutActionPerformed
+
+    private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
+        // TODO add your handling code here:
+        wodC();
+        appHomeS();
+    }//GEN-LAST:event_closeActionPerformed
+
+    private void meanSpeakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meanSpeakActionPerformed
+        // TODO add your handling code here:
+          System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
+      Voice v;
+      VoiceManager vm=VoiceManager.getInstance();
+     // voice=vm.getVoice(VOICENAME);
+      v = vm.getVoice(VOICENAME);
+      v.allocate(); 
+      v.speak(wod_meaning.getText());   
+    }//GEN-LAST:event_meanSpeakActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1682,6 +1792,7 @@ public void updateDB()
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Search;
     private javax.swing.JLabel ab_pan_bg;
+    private javax.swing.JLabel abhi_txt;
     private javax.swing.JButton about;
     private javax.swing.JPanel about_pannel;
     private javax.swing.JLabel app_icon;
@@ -1691,6 +1802,7 @@ public void updateDB()
     private javax.swing.JButton close;
     private javax.swing.JButton dbutton;
     private javax.swing.JPanel delete;
+    private javax.swing.JLabel disp_random;
     private javax.swing.JTextField dword;
     private javax.swing.JButton exit;
     private javax.swing.JButton exit_about;
@@ -1700,14 +1812,13 @@ public void updateDB()
     private javax.swing.JTabbedPane home_tab;
     private javax.swing.JPanel insert;
     private javax.swing.JButton insertIn;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel insert_txt;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jay_txt;
     private javax.swing.JPanel loading;
     private javax.swing.JLabel loading_gif;
     private javax.swing.JLabel loading_txt;
     private javax.swing.JLabel logo;
-    private javax.swing.JLabel logo_about;
     private javax.swing.JPanel main_pan;
     private javax.swing.JTextField meanIn;
     private javax.swing.JButton meanSpeak;
@@ -1717,10 +1828,12 @@ public void updateDB()
     private javax.swing.JLabel menu_txt;
     private javax.swing.JLabel menu_txt_about;
     private javax.swing.JTextField op;
+    private javax.swing.JLabel proj_txt;
     private javax.swing.JButton random;
     private javax.swing.JLabel remove_menu;
     private javax.swing.JLabel remove_menuAbout;
     private javax.swing.JTextField result;
+    private javax.swing.JLabel saw_bg;
     private javax.swing.JLabel sbar;
     private javax.swing.JLabel sbar_about;
     private javax.swing.JPanel search;
@@ -1732,9 +1845,11 @@ public void updateDB()
     private javax.swing.JButton speak_word;
     private javax.swing.JPanel start;
     private javax.swing.JLabel tab_bg;
+    private javax.swing.JLabel topbar;
+    private javax.swing.JLabel topbar1;
     private javax.swing.JTable traversal;
     private javax.swing.JTextField txt;
-    private javax.swing.JLabel w1;
+    private javax.swing.JLabel viru_txt;
     private javax.swing.JPanel wod;
     private javax.swing.JButton wod_about;
     private javax.swing.JLabel wod_bg;
