@@ -14,6 +14,14 @@ import javax.swing.table.TableColumn;
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
 import java.util.Random;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 //import java.util.TimerTask;
 
 
@@ -127,6 +135,24 @@ public class options extends javax.swing.JFrame {
         wod.setVisible(false);
         wod.setEnabled(false);
     }
+     public void loadingS()
+     {
+         loading.setVisible(true);
+        loading.setEnabled(true);
+         
+     }
+     public void loadingC()
+     {
+       /*   try {
+              Thread.sleep(4000);
+          } catch (InterruptedException ex) {
+              Logger.getLogger(options.class.getName()).log(Level.SEVERE, null, ex);
+          } */
+         
+        loading.setVisible(false);
+        loading.setEnabled(false);
+
+     }
     public void randomWord()
     {
         int rowCount=0;
@@ -424,10 +450,11 @@ public class options extends javax.swing.JFrame {
         
         this.setSize((int)width, (int)height);
         initComponents();
+      //  op.setBackground(new Color(0,0,0,240));
         appMenu();
       //  gif();
        loading.setVisible(false);
-       loading.setEnabled(false);
+       loading.setEnabled(false);     
         appHomeC();
         slideBarHomeC();
         slideBarAboutC();
@@ -524,6 +551,16 @@ public class options extends javax.swing.JFrame {
     private void initComponents() {
 
         main_pan = new javax.swing.JPanel();
+        about_pannel = new javax.swing.JPanel();
+        menu_about = new javax.swing.JLabel();
+        abt_short = new javax.swing.JLabel();
+        abt = new javax.swing.JLabel();
+        team_logo = new javax.swing.JLabel();
+        topbar1 = new javax.swing.JLabel();
+        jay_txt = new javax.swing.JLabel();
+        abhi_txt = new javax.swing.JLabel();
+        viru_txt = new javax.swing.JLabel();
+        n_logo = new javax.swing.JLabel();
         wod = new javax.swing.JPanel();
         meanSpeak = new javax.swing.JButton();
         wordSpeak = new javax.swing.JButton();
@@ -539,14 +576,6 @@ public class options extends javax.swing.JFrame {
         menu_txt_about = new javax.swing.JLabel();
         sbar_about = new javax.swing.JLabel();
         remove_menuAbout = new javax.swing.JLabel();
-        about_pannel = new javax.swing.JPanel();
-        topbar1 = new javax.swing.JLabel();
-        jay_txt = new javax.swing.JLabel();
-        proj_txt = new javax.swing.JLabel();
-        abhi_txt = new javax.swing.JLabel();
-        viru_txt = new javax.swing.JLabel();
-        menu_about = new javax.swing.JLabel();
-        ab_pan_bg = new javax.swing.JLabel();
         slide_bar_panHome = new javax.swing.JPanel();
         random = new javax.swing.JButton();
         exit = new javax.swing.JButton();
@@ -584,6 +613,7 @@ public class options extends javax.swing.JFrame {
         menu_homeTab = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
         loading = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         loading_txt = new javax.swing.JLabel();
         loading_gif = new javax.swing.JLabel();
         start = new javax.swing.JPanel();
@@ -595,6 +625,55 @@ public class options extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         main_pan.setLayout(null);
+
+        about_pannel.setLayout(null);
+
+        menu_about.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu.jpg"))); // NOI18N
+        menu_about.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menu_aboutMouseClicked(evt);
+            }
+        });
+        about_pannel.add(menu_about);
+        menu_about.setBounds(10, 30, 50, 50);
+
+        abt_short.setIcon(new javax.swing.ImageIcon(getClass().getResource("/abt-1--1-.png"))); // NOI18N
+        about_pannel.add(abt_short);
+        abt_short.setBounds(0, 10, 60, 90);
+
+        abt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/abt(1).png"))); // NOI18N
+        about_pannel.add(abt);
+        abt.setBounds(60, 10, 560, 90);
+
+        team_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_logo(1).jpg"))); // NOI18N
+        about_pannel.add(team_logo);
+        team_logo.setBounds(190, 170, 250, 210);
+
+        topbar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/home_screen 1(1).jpg"))); // NOI18N
+        about_pannel.add(topbar1);
+        topbar1.setBounds(0, 0, 620, 10);
+
+        jay_txt.setFont(new java.awt.Font("Algerian", 3, 24)); // NOI18N
+        jay_txt.setText("AJAY  CHODANKAR");
+        about_pannel.add(jay_txt);
+        jay_txt.setBounds(210, 380, 250, 40);
+
+        abhi_txt.setFont(new java.awt.Font("Algerian", 3, 24)); // NOI18N
+        abhi_txt.setText("ABHISHEK BHINGLE");
+        about_pannel.add(abhi_txt);
+        abhi_txt.setBounds(210, 420, 270, 30);
+
+        viru_txt.setFont(new java.awt.Font("Algerian", 3, 24)); // NOI18N
+        viru_txt.setText("VIRESH  FEGADE");
+        about_pannel.add(viru_txt);
+        viru_txt.setBounds(210, 460, 300, 30);
+
+        n_logo.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\name_frame-1-.jpg")); // NOI18N
+        about_pannel.add(n_logo);
+        n_logo.setBounds(0, 100, 620, 535);
+
+        main_pan.add(about_pannel);
+        about_pannel.setBounds(420, 70, 620, 635);
 
         wod.setLayout(null);
 
@@ -709,47 +788,6 @@ public class options extends javax.swing.JFrame {
 
         main_pan.add(slide_bar_panAbout);
         slide_bar_panAbout.setBounds(420, 70, 620, 635);
-
-        about_pannel.setLayout(null);
-
-        topbar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/home_screen 1(1).jpg"))); // NOI18N
-        about_pannel.add(topbar1);
-        topbar1.setBounds(0, 0, 620, 10);
-
-        jay_txt.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
-        jay_txt.setText("AJAY CHODANKAR");
-        about_pannel.add(jay_txt);
-        jay_txt.setBounds(120, 350, 200, 40);
-
-        proj_txt.setText("PROJECT BY ");
-        about_pannel.add(proj_txt);
-        proj_txt.setBounds(110, 280, 180, 30);
-
-        abhi_txt.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
-        abhi_txt.setText("ABHISHEK BHINGLE");
-        about_pannel.add(abhi_txt);
-        abhi_txt.setBounds(120, 410, 200, 30);
-
-        viru_txt.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        viru_txt.setText("VIRESH SHASHIKANT FEGADE");
-        about_pannel.add(viru_txt);
-        viru_txt.setBounds(120, 460, 300, 30);
-
-        menu_about.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu.jpg"))); // NOI18N
-        menu_about.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menu_aboutMouseClicked(evt);
-            }
-        });
-        about_pannel.add(menu_about);
-        menu_about.setBounds(10, 40, 50, 50);
-
-        ab_pan_bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tab-1-.jpg"))); // NOI18N
-        about_pannel.add(ab_pan_bg);
-        ab_pan_bg.setBounds(0, 0, 620, 635);
-
-        main_pan.add(about_pannel);
-        about_pannel.setBounds(420, 70, 620, 635);
 
         slide_bar_panHome.setLayout(null);
 
@@ -887,6 +925,9 @@ public class options extends javax.swing.JFrame {
 
         op.setEditable(false);
         op.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        op.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        op.setBorder(null);
+        op.setName(""); // NOI18N
         op.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 opActionPerformed(evt);
@@ -1000,6 +1041,7 @@ public class options extends javax.swing.JFrame {
 
         result.setEditable(false);
         result.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        result.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         delete.add(result);
         result.setBounds(40, 250, 500, 60);
 
@@ -1064,6 +1106,10 @@ public class options extends javax.swing.JFrame {
         home_pan.setBounds(420, 70, 620, 635);
 
         loading.setLayout(null);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\speak_icon(1).png")); // NOI18N
+        loading.add(jLabel1);
+        jLabel1.setBounds(330, 100, 50, 50);
 
         loading_txt.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         loading_txt.setForeground(new java.awt.Color(255, 255, 255));
@@ -1684,10 +1730,35 @@ public void updateDB()
     private void app_iconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_app_iconMouseClicked
         // TODO add your handling code here:
       //  appMenuC();
+       loadingS();
+ /*  Integer delayInSeconds = 2;
+   ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+
+        executorService.schedule(loadingC(), delayInSeconds, TimeUnit.SECONDS);
+
+        executorService.shutdown(); */
+new java.util.Timer().schedule( 
+        new java.util.TimerTask() {
+            @Override
+            public void run() {
+                loadingC();
+            }
+        }, 
+        3000 
+);
+    //  loadingS();
+      //loadingC();
         appHomeS();
         
     }//GEN-LAST:event_app_iconMouseClicked
+/* private static void delayedServiceTask(Integer delayInSeconds) {
 
+        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+
+        executorService.schedule(options::loadingC, delayInSeconds, TimeUnit.SECONDS);
+
+        executorService.shutdown();
+    } */
     private void remove_menuAboutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_remove_menuAboutMouseClicked
         // TODO add your handling code here:
         slideBarAboutC();
@@ -1791,10 +1862,11 @@ public void updateDB()
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Search;
-    private javax.swing.JLabel ab_pan_bg;
     private javax.swing.JLabel abhi_txt;
     private javax.swing.JButton about;
     private javax.swing.JPanel about_pannel;
+    private javax.swing.JLabel abt;
+    private javax.swing.JLabel abt_short;
     private javax.swing.JLabel app_icon;
     private javax.swing.JLabel app_menu;
     private javax.swing.JLabel bg;
@@ -1813,6 +1885,7 @@ public void updateDB()
     private javax.swing.JPanel insert;
     private javax.swing.JButton insertIn;
     private javax.swing.JLabel insert_txt;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jay_txt;
     private javax.swing.JPanel loading;
@@ -1827,8 +1900,8 @@ public void updateDB()
     private javax.swing.JLabel menu_homeTab;
     private javax.swing.JLabel menu_txt;
     private javax.swing.JLabel menu_txt_about;
+    private javax.swing.JLabel n_logo;
     private javax.swing.JTextField op;
-    private javax.swing.JLabel proj_txt;
     private javax.swing.JButton random;
     private javax.swing.JLabel remove_menu;
     private javax.swing.JLabel remove_menuAbout;
@@ -1845,6 +1918,7 @@ public void updateDB()
     private javax.swing.JButton speak_word;
     private javax.swing.JPanel start;
     private javax.swing.JLabel tab_bg;
+    private javax.swing.JLabel team_logo;
     private javax.swing.JLabel topbar;
     private javax.swing.JLabel topbar1;
     private javax.swing.JTable traversal;
