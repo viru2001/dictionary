@@ -309,6 +309,10 @@ public void Populate()
     private void initComponents() {
 
         main_pan = new javax.swing.JPanel();
+        start = new javax.swing.JPanel();
+        app_icon = new javax.swing.JLabel();
+        app_menu = new javax.swing.JLabel();
+        frame_start = new javax.swing.JLabel();
         about_pannel = new javax.swing.JPanel();
         menu_about = new javax.swing.JLabel();
         abt_short = new javax.swing.JLabel();
@@ -373,15 +377,33 @@ public void Populate()
         loading = new javax.swing.JPanel();
         loading_txt = new javax.swing.JLabel();
         loading_gif = new javax.swing.JLabel();
-        start = new javax.swing.JPanel();
-        app_icon = new javax.swing.JLabel();
-        app_menu = new javax.swing.JLabel();
-        frame_start = new javax.swing.JLabel();
         bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         main_pan.setLayout(null);
+
+        start.setLayout(null);
+
+        app_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main-logo-6--1-.png"))); // NOI18N
+        app_icon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                app_iconMouseClicked(evt);
+            }
+        });
+        start.add(app_icon);
+        app_icon.setBounds(400, 510, 70, 80);
+
+        app_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/home_screen 1.jpg"))); // NOI18N
+        start.add(app_menu);
+        app_menu.setBounds(50, 69, 630, 640);
+
+        frame_start.setIcon(new javax.swing.ImageIcon(getClass().getResource("/frame.jpg"))); // NOI18N
+        start.add(frame_start);
+        frame_start.setBounds(0, 0, 720, 780);
+
+        main_pan.add(start);
+        start.setBounds(370, -1, 720, 790);
 
         about_pannel.setLayout(null);
 
@@ -425,7 +447,7 @@ public void Populate()
         about_pannel.add(viru_txt);
         viru_txt.setBounds(210, 460, 300, 30);
 
-        n_logo.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\name_frame-1-.jpg")); // NOI18N
+        n_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/name_frame-1-.jpg"))); // NOI18N
         about_pannel.add(n_logo);
         n_logo.setBounds(0, 100, 620, 535);
 
@@ -876,28 +898,6 @@ public void Populate()
 
         main_pan.add(loading);
         loading.setBounds(420, 80, 620, 625);
-
-        start.setLayout(null);
-
-        app_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon (1).jpg"))); // NOI18N
-        app_icon.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                app_iconMouseClicked(evt);
-            }
-        });
-        start.add(app_icon);
-        app_icon.setBounds(400, 510, 70, 80);
-
-        app_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/home_screen 1.jpg"))); // NOI18N
-        start.add(app_menu);
-        app_menu.setBounds(50, 69, 630, 640);
-
-        frame_start.setIcon(new javax.swing.ImageIcon(getClass().getResource("/frame.jpg"))); // NOI18N
-        start.add(frame_start);
-        frame_start.setBounds(0, 0, 720, 780);
-
-        main_pan.add(start);
-        start.setBounds(370, -1, 720, 790);
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bg.jpg"))); // NOI18N
         main_pan.add(bg);
