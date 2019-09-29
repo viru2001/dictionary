@@ -310,6 +310,7 @@ public void Populate()
 
         main_pan = new javax.swing.JPanel();
         start = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         app_icon = new javax.swing.JLabel();
         app_menu = new javax.swing.JLabel();
         frame_start = new javax.swing.JLabel();
@@ -385,18 +386,23 @@ public void Populate()
 
         start.setLayout(null);
 
-        app_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main-logo-6--1-.png"))); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Dictionary");
+        start.add(jLabel1);
+        jLabel1.setBounds(412, 567, 60, 20);
+
+        app_icon.setIcon(new javax.swing.ImageIcon("C:\\Users\\My\\Downloads\\Webp.net-resizeimage.png")); // NOI18N
         app_icon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 app_iconMouseClicked(evt);
             }
         });
         start.add(app_icon);
-        app_icon.setBounds(400, 510, 70, 80);
+        app_icon.setBounds(405, 525, 60, 45);
 
         app_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/home_screen 1.jpg"))); // NOI18N
         start.add(app_menu);
-        app_menu.setBounds(50, 69, 630, 640);
+        app_menu.setBounds(50, 72, 630, 640);
 
         frame_start.setIcon(new javax.swing.ImageIcon(getClass().getResource("/frame.jpg"))); // NOI18N
         start.add(frame_start);
@@ -1453,6 +1459,7 @@ public void updateDB()  //updating database after inserting or deleting
     private javax.swing.JPanel insert;
     private javax.swing.JButton insertIn;
     private javax.swing.JLabel insert_txt;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jay_txt;
     private javax.swing.JPanel loading;
